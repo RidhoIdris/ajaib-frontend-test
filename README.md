@@ -1,31 +1,49 @@
-# Documentation
+# ajaib-frontend-test
 
-PRIVYID - PRETEST - FRONTEND ENGINEER
-
-## Getting started
-
-1. Copy the .env.example file and create a .env file and add the BASE API URL
-2. Install node-modules `$ npm i` and run with command `$ npm start`
+> Ajaib Frontend Test is my repo for the solutions of assignment to Ajaib's hiring process.
 
 
-## Available Scripts
 
-In the project directory, you can run:
+## Stack used
 
-### `npm start`
+- [React.js](https://reactjs.org)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TypeScript](https://typescriptlang.org/)
+- [GridJS](https://gridjs.io)
+- [React Router](https://reactrouter.com)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Developing
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+A Node.js LTS setup with [yarn](https://yarnpkg.com/) is recommended.
 
-### `npm run build`
+```bash
+# install dependencies
+yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# serve with hot reload at localhost:3000
+yarn start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# build for production
+yarn build
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# check error & warning type
+yarn lint
+
+# fix all error & warning type
+yarn lint-fix
+```
+
+## Architecture
+
+
+**Performance boost:** We wrap a Table to [`React.memo`](https://reactjs.org/docs/react-api.html#reactmemo) for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+
+### State management
+
+We use [Redux](https://redux.js.org) for our state management. Redux makes it easy to debug an application. By logging actions and state, it is easy to understand coding errors, network errors, and other forms of bugs that might come up during production.
+
+We use Redux to track the state of our app's filter settings.
+
+### Debounced search
+
+We using `lodash/debounce` to delay updating of the URL until the user has stopped typing.
