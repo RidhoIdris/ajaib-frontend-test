@@ -1,22 +1,18 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from 'react';
+import React from 'react';
 import { Grid, _ } from 'gridjs-react';
 import { PluginPosition } from 'gridjs';
 import 'gridjs/dist/theme/mermaid.css';
 import FilterPlugin from '../FilterPlugin';
-
-interface Value {
-  label:string;
-  value:string
-}
+import { useAppSelector } from '../../../helpers';
 
 const Index = (props:any) => {
-  const [params, setParams] = useState<Value|''>('');
+  const homeState = useAppSelector((state) => state.home);
   return (
     <Grid
       server={{
-        url: `${process.env.REACT_APP_API_URL}${props.data?.url}${params === '' ? '?weq=qwe' : `?gender=${params.value}`}`,
+        url: `${process.env.REACT_APP_API_URL}${props.data?.url}${homeState.params === '' ? '?weq=qwe' : `?gender=${homeState.params.value}`}`,
         headers: {
           Accept: 'application/json',
         },
@@ -62,12 +58,12 @@ const Index = (props:any) => {
         footer: ' !shadow-none !border-t !border-b-0',
         header: ' !shadow-none !border-0',
       }}
-      plugins={[{
-        id: 'myplugin',
-        component: () => _(<FilterPlugin value={params} setParams={(e:Value|'') => setParams(e)} />),
-        position: PluginPosition.Header,
-        order: 1,
-      }]}
+      // plugins={[{
+      //   id: 'myplugin',
+      //   component: () => _(<FilterPlugin />),
+      //   position: PluginPosition.Header,
+      //   order: 1,
+      // }]}
     />
   );
 };

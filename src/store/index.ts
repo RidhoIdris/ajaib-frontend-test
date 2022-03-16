@@ -9,10 +9,12 @@ import { persistStore, persistReducer } from 'redux-persist';
 
 import { history } from '../helpers';
 import authReducers from './Auth/auth.reducer';
+import homeReducers from './Home/home.reducer';
 
 const routeMiddleware = routerMiddleware(history);
 
 const rootReducer = combineReducers({
+  home: homeReducers,
   auth: authReducers,
   router: connectRouter(history),
 });
