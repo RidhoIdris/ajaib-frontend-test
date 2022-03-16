@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../../helpers';
 import homeAction from '../../../store/Home/home.action';
+import MyButton from '../Button';
 import MySelect from '../MySelect';
 // import { FilterPluginInterface } from './interface';
 
@@ -13,7 +14,7 @@ const FilterPluginComponent = () => {
       <div className="w-64">
         <MySelect placeholder="Select Gender" value={homeState.params} name="gender" onchange={(e) => dispatch(homeAction.setParams(e))} />
       </div>
-      <button type="button" onClick={() => dispatch(homeAction.setParams(''))} className="!py-2 !px-4 !bg-blue-500 !rounded text-white hover:!bg-opacity-75 ">Reset Filter</button>
+      <MyButton onClick={() => dispatch(homeAction.setParams(''))} label="Reset Filter" />
     </div>
   );
 };
